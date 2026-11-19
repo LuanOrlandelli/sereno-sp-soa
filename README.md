@@ -215,11 +215,3 @@ A execução registrada apresentou **49 testes aprovados e 0 falhas**, evidencia
 ![Compilação da solução incluindo o projeto de testes](evidencias/soa/06-compilacao-com-testes.png)
 
 Registro complementar da compilação da solução, incluindo o projeto `Sereno.Tests`.
-
-> **Observação:** estas imagens são evidências da disciplina **SOA e Web Services**. A entrega de C# e a de Operating Systems terão seus próprios repositórios e documentação.
-
-## Observações de segurança e ambiente
-
-- Não publique senhas, `secrets.json`, arquivos `.env` reais, pastas `bin/`, `obj/`, `.vs/` ou artefatos de publicação.
-- O ambiente de desenvolvimento local é demonstrativo. Para exposição pública, são necessários controles adicionais, como autenticação, TLS, validação e políticas de acesso.
-- A infraestrutura Linux e os scripts de Operating Systems fazem parte de **outra entrega acadêmica**, em repositório separado.
