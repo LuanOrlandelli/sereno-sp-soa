@@ -5,17 +5,51 @@
 
 ## Integrantes
 
-> **Preencher antes da entrega:** nome completo e RM de todos os integrantes.
-
 | Integrante | RM |
 |---|---|
-| Nome completo | RM |
+| Luan Orlandelli Ramos | 554747 |
+| Arthur Bobadilla Franchi | 55056 |
+| Jorge Luiz Silva Santos | 554418 |
 
-## Sobre o projeto
+## O problema: o calor urbano e a dificuldade de se proteger
 
-O **Sereno SP** é uma solução CitizenTech voltada ao monitoramento de condições de calor urbano e ao apoio à população na identificação de situações de risco. Seu backend recebe leituras de sensores/totens, calcula e classifica indicadores de calor, registra alertas, mantém pontos de refresco e armazena previsões de calor.
+Em São Paulo, episódios de calor intenso tornam atividades cotidianas — caminhar até um serviço, trabalhar ao ar livre ou permanecer em espaços públicos — mais desgastantes e potencialmente perigosas. O risco não depende apenas da temperatura registrada: a umidade do ar também influencia a sensação térmica e o estresse provocado pelo calor. Em uma cidade extensa e com condições ambientais diferentes entre bairros, uma informação meteorológica geral nem sempre ajuda alguém a decidir o que fazer no lugar onde está.
 
-Esta entrega reúne a API REST, o modelo de domínio, a persistência em PostgreSQL, as migrações do Entity Framework Core, a documentação OpenAPI/Swagger e os testes automatizados.
+O problema se torna especialmente relevante para **pessoas idosas, sobretudo as que vivem sozinhas ou passam parte do dia fora de casa, e trabalhadores expostos ao sol**, como entregadores, ambulantes e profissionais de limpeza urbana. Para esses públicos, saber que o dia estará quente é insuficiente. É necessário responder a perguntas práticas: **o calor neste local já representa perigo? A situação pode piorar amanhã? Onde há água ou sombra por perto?**
+
+A proposta do Sereno SP parte dessa lacuna entre a informação sobre o clima e a possibilidade de agir. Seu recorte inicial é a **região de Santana, na zona norte de São Paulo**, com a intenção de combinar dados ambientais locais, alertas compreensíveis e indicação de lugares de apoio. O objetivo não é substituir orientações de saúde ou serviços meteorológicos oficiais, mas **transformar informações sobre calor em orientações acessíveis para reduzir a exposição ao risco**.
+
+## A solução proposta: Sereno SP
+
+O **Sereno SP** é uma proposta de *CitizenTech* voltada à proteção das pessoas em situações de calor urbano intenso. A ideia é oferecer uma jornada simples: **entender o risco atual, antecipar a condição do dia seguinte e encontrar um local próximo para se refrescar**. Em vez de apresentar apenas números de temperatura, a solução organiza os dados em informações que podem apoiar decisões do cotidiano.
+
+A proposta reúne três frentes complementares:
+
+1. **Monitoramento local:** totens/sensores registram temperatura e umidade. A partir das leituras, o sistema calcula o índice de calor, classifica o nível de risco e pode gerar alertas relacionados à situação observada.
+2. **Antecipação do risco:** previsões de calor para datas específicas são recebidas e armazenadas, incluindo probabilidade, classificação e mensagem de orientação. A integração com um modelo de aprendizado de máquina faz parte da proposta interdisciplinar; **esta entrega de SOA implementa a API que recebe e disponibiliza as previsões, não o treinamento do modelo**.
+3. **Orientação para proteção:** pontos de refresco são cadastrados com localização e informações como disponibilidade de água e sombra. A API permite consultar locais próximos, ordenados por distância, para que outras interfaces possam orientar o cidadão até uma opção de apoio.
+
+### Exemplo de uso
+
+Imagine uma pessoa idosa que precisa sair de casa em um dia de muito calor. Antes de sair, ela pode consultar uma previsão que sinalize maior risco para o dia seguinte. Ao circular por Santana, uma leitura de sensor pode indicar calor perigoso e originar um alerta. Com base em sua localização, ela pode receber uma lista de pontos de refresco próximos — por exemplo, espaços públicos cadastrados com sombra ou acesso a água. O foco é permitir que a informação resulte em uma ação concreta: **reduzir a exposição ao sol, procurar um ambiente mais protegido e planejar melhor os deslocamentos**.
+
+### Papel desta entrega de SOA e Web Services
+
+Esta entrega concentra-se no **backend de integração** do Sereno SP. A API REST, desenvolvida em C#/.NET, é responsável por:
+
+- Gerenciar o cadastro e a consulta dos totens de monitoramento;
+- Receber leituras ambientais, calcular e classificar o índice de calor e registrar alertas;
+- Cadastrar e consultar pontos de refresco, incluindo busca geográfica por proximidade;
+- Receber, persistir e consultar previsões de calor;
+- Disponibilizar os dados em endpoints HTTP documentados por OpenAPI/Swagger;
+- Persistir as informações no PostgreSQL com Entity Framework Core e migrações versionadas;
+- Verificar a disponibilidade da API e do banco pelo endpoint `/health`.
+
+A arquitetura é organizada em camadas (`Domain`, `Application`, `Infrastructure` e `Api`) para separar as regras de negócio da exposição dos serviços e do acesso aos dados. O projeto inclui testes automatizados xUnit para validar comportamentos centrais. **Aplicativo móvel, sensores físicos/simulados e treinamento do modelo de ML pertencem a outras frentes da proposta CitizenTech; não são apresentados aqui como funcionalidades implementadas por esta API.**
+
+### Impacto esperado
+
+A contribuição esperada é facilitar o acesso a informações locais e antecipadas sobre calor, aproximando alertas ambientais de decisões úteis para a população. Ao oferecer uma API organizada e documentada, o Sereno SP também cria uma base de integração para aplicativos, dispositivos e serviços que ajudem a construir uma cidade mais preparada para eventos de calor extremo. **Trata-se do impacto pretendido pela solução, não de um resultado de campo já medido.**
 
 ## Tecnologias
 
@@ -142,18 +176,47 @@ Na execução documentada para o desenvolvimento, **49 testes xUnit foram aprova
 | Documentação automática (1,5) | `/swagger` e `/openapi/v1.json` em ambiente de desenvolvimento |
 | Testes automatizados (1,0) | `Sereno.Tests/` e evidência da execução xUnit |
 
-## Evidências
+## Evidências de execução — SOA e Web Services
 
-Arquivos disponíveis em `evidencias/soa/`:
+As seis capturas abaixo estão na pasta `evidencias/soa/` e documentam a API, a persistência, a documentação automática e a execução dos testes. As imagens são exibidas diretamente no GitHub por meio de caminhos relativos, desde que a pasta `evidencias/soa/` seja publicada junto com este README.
 
-| Arquivo | O que demonstra |
-|---|---|
-| `01-swagger-endpoints.png` | Documentação automática dos endpoints |
-| `02-health-200.png` | API e conexão com o banco respondendo |
-| `03-totens-200.png` | Consulta REST aos totens |
-| `04-compilacao.png` | Compilação bem-sucedida |
-| `05-testes-xunit.png` | Execução dos testes automatizados |
-| `06-compilacao-com-testes.png` | Compilação da solução com projeto de testes |
+### 1. Documentação automática dos endpoints — Swagger
+
+![Swagger UI com os endpoints da API Sereno SP](evidencias/soa/01-swagger-endpoints.png)
+
+A interface Swagger apresenta os endpoints REST disponibilizados pela aplicação e permite explorar suas operações.
+
+### 2. Health check — API e banco disponíveis
+
+![Endpoint health retornando API e banco online](evidencias/soa/02-health-200.png)
+
+O endpoint `/health` comprova a disponibilidade da API e a verificação de comunicação com o banco de dados no momento da execução.
+
+### 3. Consulta REST de totens — HTTP 200
+
+![Consulta GET de totens com resposta HTTP 200](evidencias/soa/03-totens-200.png)
+
+A operação `GET /api/totens` demonstra a exposição e a resposta de um recurso da API REST.
+
+### 4. Compilação da solução
+
+![Compilação da solução Sereno SP no Visual Studio](evidencias/soa/04-compilacao.png)
+
+Registro do processo de compilação da solução no Visual Studio.
+
+### 5. Testes automatizados — xUnit
+
+![Gerenciador de Testes com 49 testes xUnit aprovados](evidencias/soa/05-testes-xunit.png)
+
+A execução registrada apresentou **49 testes aprovados e 0 falhas**, evidenciando a validação automatizada das regras implementadas.
+
+### 6. Compilação com o projeto de testes
+
+![Compilação da solução incluindo o projeto de testes](evidencias/soa/06-compilacao-com-testes.png)
+
+Registro complementar da compilação da solução, incluindo o projeto `Sereno.Tests`.
+
+> **Observação:** estas imagens são evidências da disciplina **SOA e Web Services**. A entrega de C# e a de Operating Systems terão seus próprios repositórios e documentação.
 
 ## Observações de segurança e ambiente
 
