@@ -164,7 +164,7 @@ Na raiz da solução:
 dotnet test Sereno.Api.slnx
 ```
 
-Na execução documentada para o desenvolvimento, **49 testes xUnit foram aprovados, com 0 falhas**. O comando acima permite reproduzir a execução no ambiente local.
+Na execução documentada para o desenvolvimento, **51 testes xUnit foram aprovados, com 0 falhas**. O comando acima permite reproduzir a execução no ambiente local.
 
 ## Critérios de avaliação de SOA
 
@@ -206,9 +206,9 @@ Registro do processo de compilação da solução no Visual Studio.
 
 ### 5. Testes automatizados — xUnit
 
-![Gerenciador de Testes com 49 testes xUnit aprovados](evidencias/soa/05-testes-xunit.png)
+![Gerenciador de Testes com 51 testes xUnit aprovados](evidencias/soa/05-testes-xunit.png)
 
-A execução registrada apresentou **49 testes aprovados e 0 falhas**, evidenciando a validação automatizada das regras implementadas.
+A execução registrada apresentou **51 testes aprovados e 0 falhas**, evidenciando a validação automatizada das regras implementadas.
 
 ### 6. Compilação com o projeto de testes
 
