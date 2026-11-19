@@ -1,5 +1,4 @@
 
-@'
 # ==========================================
 # SERENO SP - SOA E WEB SERVICES
 # Global Solution FIAP 2026
@@ -69,4 +68,4 @@ Thumbs.db
 *.zip
 *.rar
 *.7z
-'@ | Set-Content -Path ".gitignore" -Encoding utf8
+
