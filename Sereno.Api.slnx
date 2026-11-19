@@ -1,0 +1,7 @@
+<Solution>
+  <Project Path="Sereno.Api/Sereno.Api.csproj" />
+  <Project Path="Sereno.Application/Sereno.Application.csproj" />
+  <Project Path="Sereno.Domain/Sereno.Domain.csproj" />
+  <Project Path="Sereno.Infrastructure/Sereno.Infrastructure.csproj" />
+  <Project Path="Sereno.Tests/Sereno.Tests.csproj" Id="1151ab0d-b464-499a-a9d2-06678d7279a5" />
+</Solution>

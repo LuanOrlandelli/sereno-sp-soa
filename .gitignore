@@ -1,0 +1,72 @@
+
+@'
+# ==========================================
+# SERENO SP - SOA E WEB SERVICES
+# Global Solution FIAP 2026
+# ==========================================
+
+# Visual Studio
+.vs/
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+
+# Compilacao .NET
+**/bin/
+**/obj/
+[Dd]ebug/
+[Rr]elease/
+artifacts/
+
+# Publicacao
+publish/
+publish-linux/
+**/publish/
+
+# Testes e cobertura
+TestResults/
+coverage/
+coverage-report/
+*.coverage
+*.coveragexml
+*.trx
+
+# Configuracoes sensiveis
+.env
+.env.*
+!.env.example
+secrets.json
+**/secrets.json
+appsettings.Development.json
+appsettings.Local.json
+appsettings.Production.json
+appsettings.*.local.json
+*.pfx
+*.p12
+*.pem
+*.key
+
+# Logs
+*.log
+logs/
+
+# Temporarios
+*.tmp
+*.bak
+*.cache
+*.swp
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+
+# Arquivos compactados
+*.zip
+*.rar
+*.7z
+'@ | Set-Content -Path ".gitignore" -Encoding utf8
